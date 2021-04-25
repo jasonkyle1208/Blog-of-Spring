@@ -1,0 +1,40 @@
+-----Spring Boot的应用
+Spring Boot：不需要编写XML配置文件，修改默认值来满足特定需求。
+Spring Boot由一系列启动器组成，开发时选择并组合相应的启动器。
+
+配置Spring Boot的问题:
+①Project 'org.springframework.boot:spring-boot-starter-parent:1.3.3.RELEASE' not found。
+重启idea解决了？
+
+应用Spring Boot的问题:
+①直接运行BbsDaemon类时localhost:8080拒绝访问
+在从github中拿下来的代码的基础上，在com.smart.web中加BbsDaemon类无法正常运行，将BbsDaemon单独新建工程配置Spring Boot即可解决，原因未知。
+
+②运行Spring-boot:run时(已有BbsDaemon类)
+Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:1.3.3.RELEASE:run (default-cli) on project chapter3: Execution default-cli of goal org.springframework.boot:spring-boot-maven-plugin:1.3.3.RELEASE:run failed: Unable to find a single main class from the following candidates [com.smart.Application, com.smart.web.BbsDaemon]
+原因：没有一个确定的主类，去掉一个main方法即可
+衍生问题：
+Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:1.3.3.RELEASE:run (default-cli) on project chapter3: An exception occurred while running. null
+原因：需在pom.xml指定主类
+方法:
+https://stackoverflow.com/questions/60411383/failed-to-execute-goal-org-springframework-bootspring-boot-maven-plugin2-1-3-r
+衍生问题：
+Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:1.3.3.RELEASE:run (default-cli) on project chapter3: An exception occurred while running. Application
+运行失败，待解决
+
+问题:
+Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:1.3.3.RELEASE:run (default-cli) on project chapter3: An exception occurred while running. null
+原因：运维支持中应用磁盘空间检查配置中路径出错
+方法：注释掉management.health.diskspace.path=D:/masterSpring/code或者改为相应路径
+
+基于Gradle环境配置
+问题：Failed to apply plugin [class 'io.spring.gradle.dependencymanagement.DependencyManagementPlugin']
+原因：gradle和spring dependency-management-plugin版本不兼容问题。
+方法： 添加classpath("io.spring.gradle:dependency-management-plugin:0.6.1.RELEASE")
+https://blog.csdn.net/weixin_30802171/article/details/94907550
+基于Spring Boot CLI环境配置
+命令行运行示例时，出现：
+General error during conversion: org.eclipse.aether.resolution.DependencyResolutionException: Failed to collect dependencies at org.codehaus.groovy:groovy-templates:jar:2.4.6
+原因：版本过低？与jdk1.8不对应。
+方法：1.3.3版本换成2.0.0版本
+https://blog.csdn.net/sun8112133/article/details/104137328
