@@ -1,0 +1,31 @@
+配置环境过程：直接从github上找到了相关配置文件的源码(不用手打)
+https://github.com/ljvblfz/Proficient-in-Spring-4.x
+数据库:Mysql5.6；Sql Server
+第一个Spring4.x示例：小春论坛的登录
+Maven基础概念：
+Project： 工程对象模型：Project Object Model，POM。
+POM：pom.xml是maven的核心文件，指示maven如何工作，类似Ant中build.xml。一般位于根目录
+GroupId：一般是工程名，是一个工程在全局中的唯一标识符，用于区分工程。
+Artifact：工程将要使用或产生的文件，需放在Repository中，可以为多种文件类型。
+Dependency：Java工程依赖的包。
+Plug-in：Maven是插件的集合
+Repository：Maven的仓库，Artifact存放的地方。
+创建库表：MySql编辑，source C:\masterSpring\chapter2\schema\sampledb.sql。
+问题及解决办法:
+①org.springframework.transaction.CannotCreateTransactionException: Could not open JDBC   Connection for transaction; nested exception is org.apache.commons.dbcp.SQLNestedException: Cannot create PoolableConnectionFactory (Access denied for user 'root'@'localhost' (using password: YES))
+一般情况下是因为MySql的username和password和smart-context.xml中设置不同，改为相同即可.
+②Cannot create PoolableConnectionFactory (The server time zone value '???????......
+原因分析：数据库和系统时区差异所造成的系统时差引起
+具体:https://blog.csdn.net/weixin_39838362/article/details/111550184
+https://www.cnblogs.com/guo-xu/p/11177028.html
+③TestNG问题
+进行单元测试时未符合预期效果.
+运行效果：
+④jetty问题
+论坛整体运行成功，仍有红色信息反馈，似乎没有问题。
+
+----------------------------------------分割线--------------------------------------------------------
+阅读源码：
+。。。。。。
+扩展:
+。。。。。
